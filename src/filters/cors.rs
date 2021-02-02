@@ -378,16 +378,16 @@ impl Configured {
                     return Err(Forbidden::MethodNotAllowed);
                 }
 
-                if let Some(req_headers) = headers.get(header::ACCESS_CONTROL_REQUEST_HEADERS) {
-                    let headers = req_headers
-                        .to_str()
-                        .map_err(|_| Forbidden::HeaderNotAllowed)?;
-                    for header in headers.split(',') {
-                        if !self.is_header_allowed(header.trim()) {
-                            return Err(Forbidden::HeaderNotAllowed);
-                        }
-                    }
-                }
+                // if let Some(req_headers) = headers.get(header::ACCESS_CONTROL_REQUEST_HEADERS) {
+                //     let headers = req_headers
+                //         .to_str()
+                //         .map_err(|_| Forbidden::HeaderNotAllowed)?;
+                //     for header in headers.split(',') {
+                //         if !self.is_header_allowed(header.trim()) {
+                //             return Err(Forbidden::HeaderNotAllowed);
+                //         }
+                //     }
+                // }
 
                 Ok(Validated::Preflight(origin.clone()))
             }
